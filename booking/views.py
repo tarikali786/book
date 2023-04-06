@@ -18,8 +18,6 @@ class BookingListCreateView(generics.ListCreateAPIView):
             capacity = serializer.validated_data['capacity']
             if Booking.objects.filter(room=room, start_time__lte=end_time, end_time__gte=start_time).exists():
                 return Response({'message': 'The room is already booked for this time'}, status=status.HTTP_400_BAD_REQUEST)
-            
-            
             if start_time.date() != end_time.date() or \
                 start_time.minute % 15 != 0 or \
                 end_time.minute % 15 != 0 or \
@@ -29,15 +27,7 @@ class BookingListCreateView(generics.ListCreateAPIView):
                 end_time.hour >= 24 or \
                 end_time > start_time.replace(hour=23, minute=45):
                 return Response({'error': 'Invalid booking time'}, status=status.HTTP_400_BAD_REQUEST)
-            # if start_time >= end_time:
-            #     return Response({'message': 'Booking end time should be greater than start time'}, status=status.HTTP_400_BAD_REQUEST)
-
-            # if start_time.time().minute % 15 != 0 or end_time.time().minute % 15 != 0:
-            #     return Response({'message': 'Booking start and end times should be in 15-minute intervals'}, status=status.HTTP_400_BAD_REQUEST)
-
-            # if end_time - start_time > timedelta(hours=24):
-            #     return Response({'message': 'Booking cannot be for more than a day'}, status=status.HTTP_400_BAD_REQUEST)
-
+          
             if capacity > 0 and capacity <= 3 and room.id == 1:
                 booking = Booking(room=room, start_time=start_time, end_time=end_time,capacity=capacity)
                 serializer = BookingSerializer(booking, data=request.data)

@@ -1,8 +1,16 @@
 
+before running project please activate virtualenv 
+ step 1. please run this commend [
+    .\env\Scripts\activate
+]
+
+step 2: pyhton manage.py runserver
+
+
 1 Booking Conference room hit this url {http://127.0.0.1:8000/bookings/}
 {
-    "start_time": "2023-03-31T19:45:00+05:30",
-    "end_time": "2023-03-31T20:00:00+05:30",
+    "start_time": "2023-04-06T07:00:00",
+    "end_time": "2023-04-06T06:30:00",
     "capacity": 1,
     "room": 1
 }
