@@ -1,0 +1,23 @@
+
+1 Booking Conference room hit this url {http://127.0.0.1:8000/bookings/}
+{
+    "start_time": "2023-03-31T19:45:00+05:30",
+    "end_time": "2023-03-31T20:00:00+05:30",
+    "capacity": 1,
+    "room": 1
+}
+ 	
+
+2. Get All Room {http://127.0.0.1:8000/listRoom/}
+
+3.
+Intalled all Liabrary
+    pip install django==3.2.8
+    python -m pip install --upgrade pip
+    pip install django-cors-headers    
+    pip install mysqlclient     
+    pip install djangorestframework 
+    pip install environ                
+    pip install django-rest-swagger
+    pip install djongo             
+   
