@@ -1,10 +1,9 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from django.core.exceptions import ValidationError
-from .models import Booking
-from .serializers import BookingSerializer
-from datetime import datetime, timedelta
-
+from .models import Booking,Room
+from .serializers import BookingSerializer,RoomSerializer
+from rest_framework.views import APIView
 class BookingListCreateView(generics.ListCreateAPIView):
     serializer_class = BookingSerializer
     def get_queryset(self):
@@ -58,28 +57,11 @@ class BookingListCreateView(generics.ListCreateAPIView):
 
 
             
+class RoomView(APIView):
+    def get(self, request):
+        book = Room.objects.all()
+        serializer = RoomSerializer(book, many=True)
+        return Response(serializer.data)
             
             
-            
-            
-            
-            
-            
-        #     if Booking.objects.filter(room=room, start_time__lte=end_time, end_time__gte=start_time).exists():
-        #         return Response({'message': 'The room is already booked for this time'}, 
-        #                         status=status.HTTP_400_BAD_REQUEST)
-                
-                
-        #     if int(capacity) > 0 and int(capacity) <= 3 and room == 1:
-        #         # return create(request, *args, **kwargs)
-        #         print('hello')
-        #     elif int(capacity) > 3 and int(capacity) <= 7 and room == 2:
-        #         return create(request, *args, **kwargs)
-        #     elif int(capacity) > 7 and int(capacity) <= 20 and room == 3:
-        #         return create(request, *args, **kwargs)
-        #     else:
-        #         return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-            
-        # else:
-                # return Response({'error': 'data not valid '}, status=status.HTTP_400_BAD_REQUEST)
             
