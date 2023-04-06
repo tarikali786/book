@@ -12,4 +12,4 @@ class RoomSerializer(serializers.ModelSerializer):
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
-        fields ='__all__'
+        fields =['id','room','start_time','end_time','capacity']
